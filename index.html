@@ -3,138 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ET4047 — Lab Reports</title>
+<title>ET4047 — Lab Reports · University of Limerick</title>
+<link rel="icon" type="image/png" href="assets/ul-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5f6f8;
-    --card: #ffffff;
-    --ink: #1c2230;
-    --muted: #6b7280;
-    --accent: #2563eb;
-    --accent-ink: #ffffff;
-    --border: #e5e7eb;
-    --shadow: 0 1px 2px rgba(16,24,40,.06), 0 8px 24px rgba(16,24,40,.06);
+    --ul-green:        #165E3A;
+    --ul-modern-green: #3BB143;
+    --ul-light-green:  #e8f5ec;
+    --ul-white:        #ffffff;
+    --ul-grey:         #ddeee4;
+    --ul-text:         #0f3d22;
+    --bg:              #0c0f0d;
+    --surface:         #111812;
+    --surface-2:       #161d16;
+    --border:          #1f2b1f;
+    --accent:          #3BB143;
+    --accent-dim:      rgba(59,177,67,0.15);
+    --muted:           #5a7a66;
+    --shadow:          0 4px 32px rgba(0,0,0,0.5);
   }
   * { box-sizing: border-box; }
   html, body {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     background: var(--bg);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #c8dbc8;
+    font-family: 'IBM Plex Mono', monospace;
     -webkit-font-smoothing: antialiased;
   }
-  header {
-    max-width: 960px;
+
+  /* ══ HEADER ══════════════════════════════════════════════════════ */
+  header { border-bottom: 3px solid var(--ul-modern-green); }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: var(--ul-white);
+    padding: 18px 28px;
+  }
+  .header-top .ul-logo { height: 58px; width: auto; }
+  .header-top .ece-logo { height: 40px; width: auto; margin-left: auto; }
+  .header-nav {
+    background: var(--ul-green);
+    color: var(--ul-white);
+    padding: 14px 28px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .header-nav .course { color: var(--ul-modern-green); }
+  .header-nav .sep { color: rgba(255,255,255,0.4); }
+
+  /* ══ HERO ════════════════════════════════════════════════════════ */
+  .hero {
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 56px 20px 8px;
+    padding: 48px 28px 8px;
   }
-  h1 {
-    margin: 0 0 6px;
-    font-size: clamp(1.7rem, 4vw, 2.4rem);
-    letter-spacing: -0.02em;
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 10px;
+    color: var(--ul-white);
   }
-  .subtitle {
+  .hero h1 .accent { color: var(--ul-modern-green); }
+  .hero p {
     margin: 0;
     color: var(--muted);
-    font-size: 1.02rem;
+    font-size: 1rem;
+    max-width: 60ch;
   }
-  main {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 24px 20px 72px;
-  }
+
+  /* ══ GRID ════════════════════════════════════════════════════════ */
+  main { max-width: 1000px; margin: 0 auto; padding: 28px; }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 16px;
   }
   .card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    background: var(--card);
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 22px;
     text-decoration: none;
     color: inherit;
-    box-shadow: var(--shadow);
-    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-    min-height: 148px;
+    min-height: 158px;
+    overflow: hidden;
+    transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--border);
+    transition: background .14s ease;
   }
   a.card:hover {
-    transform: translateY(-3px);
-    border-color: #c7d2fe;
-    box-shadow: 0 2px 4px rgba(16,24,40,.08), 0 14px 34px rgba(37,99,235,.14);
+    transform: translateY(-4px);
+    border-color: var(--ul-modern-green);
+    box-shadow: 0 10px 30px rgba(59,177,67,0.18);
   }
+  a.card:hover::before { background: var(--ul-modern-green); }
+
   .week {
-    font-size: .8rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: .06em;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--ul-modern-green);
   }
+  .card.soon .week { color: var(--muted); }
   .title {
-    margin-top: 8px;
-    font-size: 1.08rem;
-    font-weight: 600;
-    line-height: 1.3;
+    margin-top: 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.12rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ul-white);
     flex: 1;
   }
+  .card.soon .title { color: #6b7d6f; }
   .status {
-    margin-top: 14px;
+    margin-top: 16px;
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    font-size: .84rem;
+    gap: 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
     color: var(--muted);
   }
-  .card.available .status { color: var(--accent); font-weight: 600; }
-  .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: currentColor;
-  }
-  .card.soon {
-    background: #fafbfc;
-    box-shadow: none;
-    cursor: default;
-  }
-  .card.soon .week { color: #9aa3b2; }
-  .card.soon .title { color: #7b8494; }
+  .card.available .status { color: var(--ul-modern-green); font-weight: 600; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .card.available .dot { box-shadow: 0 0 0 3px var(--accent-dim); }
+  .arrow { transition: transform .14s ease; }
+  a.card:hover .arrow { transform: translateX(3px); }
+
+  /* ══ FOOTER ══════════════════════════════════════════════════════ */
   footer {
-    max-width: 960px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 0 20px 48px;
+    padding: 8px 28px 56px;
     color: var(--muted);
-    font-size: .85rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0f141b;
-      --card: #171d27;
-      --ink: #e6e9ef;
-      --muted: #9aa3b2;
-      --border: #262d3a;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
-    }
-    a.card:hover { border-color: #3b4a7a; }
-    .card.soon { background: #131922; }
-    .card.soon .title { color: #6b7484; }
+  footer a { color: var(--ul-modern-green); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    .header-top { padding: 14px 18px; gap: 14px; }
+    .header-top .ul-logo { height: 46px; }
+    .header-top .ece-logo { height: 32px; }
+    .header-nav { padding: 12px 18px; font-size: 0.85rem; }
+    .hero { padding: 34px 18px 4px; }
+    main { padding: 22px 18px; }
+    footer { padding: 8px 18px 44px; }
   }
 </style>
 </head>
 <body>
+  <!-- ══ HEADER ══════════════════════════════════════════════════════ -->
   <header>
-    <h1>ET4047 — Lab Reports</h1>
-    <p class="subtitle">Microprocessor Systems · weekly laboratory exercises</p>
+    <div class="header-top">
+      <a href="https://www.ul.ie" target="_blank" rel="noopener" aria-label="University of Limerick">
+        <img class="ul-logo" src="assets/ul-logo.png" alt="University of Limerick" />
+      </a>
+      <img class="ece-logo" src="assets/ece-logo.png" alt="Department of Electronic and Computer Engineering" />
+    </div>
+    <div class="header-nav">
+      <span class="course">ET4047</span>
+      <span class="sep">·</span>
+      <span>Microprocessor Systems</span>
+      <span class="sep">·</span>
+      <span>Laboratory Reports</span>
+    </div>
   </header>
 
+  <!-- ══ HERO ════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <h1>Lab <span class="accent">Reports</span></h1>
+    <p>Weekly laboratory exercises for ET4047 Microprocessor Systems. Select a week to open its report.</p>
+  </section>
+
+  <!-- ══ GRID ════════════════════════════════════════════════════════ -->
   <main>
     <div class="grid">
       <a class="card available" href="https://lukegrif.github.io/W03-LAB-ET4047/">
         <span class="week">Week 03</span>
         <span class="title">Polling and Interrupts</span>
-        <span class="status"><span class="dot"></span>View report</span>
+        <span class="status"><span class="dot"></span>View report <span class="arrow">→</span></span>
       </a>
 
       <div class="card soon">
@@ -188,7 +262,8 @@
   </main>
 
   <footer>
-    Select a week to open its lab report. New weeks are added as each lab is completed.
+    University of Limerick · Department of Electronic &amp; Computer Engineering ·
+    New weeks are added as each lab is completed.
   </footer>
 </body>
 </html>
