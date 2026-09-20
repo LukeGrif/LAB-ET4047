@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ET4047 — Lab Reports · University of Limerick</title>
+<title>Lab Documents · Embedded Software · University of Limerick</title>
 <link rel="icon" type="image/png" href="assets/ul-logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,12 +55,28 @@
     letter-spacing: 0.4px;
     font-size: 0.95rem;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 12px;
     flex-wrap: wrap;
   }
   .header-nav .course { color: var(--ul-modern-green); }
   .header-nav .sep { color: rgba(255,255,255,0.4); }
+  .header-nav .gh-link {
+    margin-left: auto;
+    color: var(--ul-white);
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 6px 13px;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: background .14s ease, color .14s ease, border-color .14s ease;
+  }
+  .header-nav .gh-link:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--ul-modern-green);
+    color: var(--ul-modern-green);
+  }
 
   /* ══ HERO ════════════════════════════════════════════════════════ */
   .hero {
@@ -82,7 +98,7 @@
     margin: 0;
     color: var(--muted);
     font-size: 1rem;
-    max-width: 60ch;
+    max-width: 62ch;
   }
 
   /* ══ GRID ════════════════════════════════════════════════════════ */
@@ -100,9 +116,7 @@
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 22px;
-    text-decoration: none;
-    color: inherit;
-    min-height: 158px;
+    min-height: 168px;
     overflow: hidden;
     transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease;
   }
@@ -114,12 +128,12 @@
     background: var(--border);
     transition: background .14s ease;
   }
-  a.card:hover {
+  .card.available:hover {
     transform: translateY(-4px);
     border-color: var(--ul-modern-green);
     box-shadow: 0 10px 30px rgba(59,177,67,0.18);
   }
-  a.card:hover::before { background: var(--ul-modern-green); }
+  .card.available:hover::before { background: var(--ul-modern-green); }
 
   .week {
     font-family: 'IBM Plex Mono', monospace;
@@ -140,6 +154,26 @@
     flex: 1;
   }
   .card.soon .title { color: #6b7d6f; }
+
+  /* card action links */
+  .links { margin-top: 16px; display: flex; gap: 9px; flex-wrap: wrap; }
+  .link {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 7px 12px;
+    border-radius: 7px;
+    transition: background .14s ease, color .14s ease, border-color .14s ease;
+  }
+  .link.report { background: var(--ul-modern-green); color: #06210f; }
+  .link.report:hover { background: #4cd156; }
+  .link.code {
+    color: var(--ul-modern-green);
+    border: 1px solid var(--border);
+  }
+  .link.code:hover { border-color: var(--ul-modern-green); background: var(--accent-dim); }
+
   .status {
     margin-top: 16px;
     display: inline-flex;
@@ -149,11 +183,7 @@
     letter-spacing: 0.3px;
     color: var(--muted);
   }
-  .card.available .status { color: var(--ul-modern-green); font-weight: 600; }
   .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-  .card.available .dot { box-shadow: 0 0 0 3px var(--accent-dim); }
-  .arrow { transition: transform .14s ease; }
-  a.card:hover .arrow { transform: translateX(3px); }
 
   /* ══ FOOTER ══════════════════════════════════════════════════════ */
   footer {
@@ -172,6 +202,7 @@
     .header-top .ul-logo { height: 46px; }
     .header-top .ece-logo { height: 32px; }
     .header-nav { padding: 12px 18px; font-size: 0.85rem; }
+    .header-nav .gh-link { margin-left: 0; }
     .hero { padding: 34px 18px 4px; }
     main { padding: 22px 18px; }
     footer { padding: 8px 18px 44px; }
@@ -190,72 +221,76 @@
     <div class="header-nav">
       <span class="course">ET4047</span>
       <span class="sep">·</span>
-      <span>Microprocessor Systems</span>
+      <span>Embedded Software</span>
       <span class="sep">·</span>
-      <span>Laboratory Reports</span>
+      <span>Lab Documents</span>
+      <a class="gh-link" href="https://github.com/LukeGrif" target="_blank" rel="noopener">View on GitHub ↗</a>
     </div>
   </header>
 
   <!-- ══ HERO ════════════════════════════════════════════════════════ -->
   <section class="hero">
-    <h1>Lab <span class="accent">Reports</span></h1>
-    <p>Weekly laboratory exercises for ET4047 Microprocessor Systems. Select a week to open its report.</p>
+    <h1>Lab <span class="accent">Documents</span></h1>
+    <p>Weekly laboratory work for ET4047 Embedded Software. Open a week to read its report — the code solutions are attached in each week's GitHub repository.</p>
   </section>
 
   <!-- ══ GRID ════════════════════════════════════════════════════════ -->
   <main>
     <div class="grid">
-      <a class="card available" href="https://lukegrif.github.io/W03-LAB-ET4047/">
+      <div class="card available">
         <span class="week">Week 03</span>
         <span class="title">Polling and Interrupts</span>
-        <span class="status"><span class="dot"></span>View report <span class="arrow">→</span></span>
-      </a>
+        <div class="links">
+          <a class="link report" href="https://lukegrif.github.io/W03-LAB-ET4047/">View report →</a>
+          <a class="link code" href="https://github.com/LukeGrif/W03-LAB-ET4047" target="_blank" rel="noopener">Code ↗</a>
+        </div>
+      </div>
 
       <div class="card soon">
         <span class="week">Week 04</span>
-        <span class="title">Lab report</span>
+        <span class="title">Lab document</span>
         <span class="status"><span class="dot"></span>Coming soon</span>
       </div>
 
       <div class="card soon">
         <span class="week">Week 05</span>
-        <span class="title">Lab report</span>
+        <span class="title">Lab document</span>
         <span class="status"><span class="dot"></span>Coming soon</span>
       </div>
 
       <div class="card soon">
         <span class="week">Week 06</span>
-        <span class="title">Lab report</span>
+        <span class="title">Lab document</span>
         <span class="status"><span class="dot"></span>Coming soon</span>
       </div>
 
       <div class="card soon">
         <span class="week">Week 07</span>
-        <span class="title">Lab report</span>
+        <span class="title">Lab document</span>
         <span class="status"><span class="dot"></span>Coming soon</span>
       </div>
 
       <div class="card soon">
         <span class="week">Week 08</span>
-        <span class="title">Lab report</span>
+        <span class="title">Lab document</span>
         <span class="status"><span class="dot"></span>Coming soon</span>
       </div>
 
       <div class="card soon">
         <span class="week">Week 09</span>
-        <span class="title">Lab report</span>
+        <span class="title">Lab document</span>
         <span class="status"><span class="dot"></span>Coming soon</span>
       </div>
 
       <div class="card soon">
         <span class="week">Week 10</span>
-        <span class="title">Lab report</span>
+        <span class="title">Lab document</span>
         <span class="status"><span class="dot"></span>Coming soon</span>
       </div>
 
       <div class="card soon">
         <span class="week">Week 11</span>
-        <span class="title">Lab report</span>
+        <span class="title">Lab document</span>
         <span class="status"><span class="dot"></span>Coming soon</span>
       </div>
     </div>
@@ -263,7 +298,7 @@
 
   <footer>
     University of Limerick · Department of Electronic &amp; Computer Engineering ·
-    New weeks are added as each lab is completed.
+    Code solutions are attached in each week's <a href="https://github.com/LukeGrif" target="_blank" rel="noopener">GitHub repository</a>.
   </footer>
 </body>
 </html>
