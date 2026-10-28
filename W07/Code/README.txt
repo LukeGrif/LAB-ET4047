@@ -4,7 +4,7 @@ W07 LAB - State Machines and the LCD Display (ET4047)
 1. Find out which display you have:
 
      16x2 LCD with I2C backpack  (separate screen, 4 wires)  -> I2C_Backpack_LCD
-     Adafruit RGB LCD shield     (plugs on, has 5 buttons)    -> Adafruit_RGB_LCD_Shield
+     Adafruit RGB LCD shield     (has 5 buttons)              -> Adafruit_RGB_LCD_Shield
 
 2. Use ONLY the folder for your display. Both folders contain the same
    sketches; only the lines that set up the LCD are different. On the RGB

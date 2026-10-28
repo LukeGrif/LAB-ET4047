@@ -16,8 +16,8 @@
 //    The shield's backlight also changes colour to match the light.
 //
 //  Wiring:
-//    LCD:    plug the shield onto the breakout board. No wires needed:
-//            it uses the I2C pins SDA (A4) and SCL (A5) through the header.
+//    LCD shield: 5V -> 5V, GND -> GND, SDA -> A4, SCL -> A5
+//                (the I2C pins; see the wiring diagram at the start of the lab)
 //
 //  Library (Tools -> Manage Libraries...):
 //    "Adafruit RGB LCD Shield Library" by Adafruit
