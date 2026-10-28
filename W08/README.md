@@ -1,9 +1,9 @@
-# Week 07 Lab — State Machines and the LCD Display (ET4047)
+# Week 08 Lab — State Machines and the LCD Display (ET4047)
 
 **Module:** ET4047 · **Author:** Luke Griffin
 **University of Limerick — Department of Electronic & Computer Engineering**
 
-🌐 **Open the lab online:** https://lukegrif.github.io/LAB-ET4047/W07/
+🌐 **Open the lab online:** https://lukegrif.github.io/LAB-ET4047/W08/
 
 In this lab you build a traffic light as a **finite state machine**, drive real
 LEDs from it, and turn it into a **pedestrian crossing** that reacts to a button
@@ -46,8 +46,8 @@ backlight also follows the light's colour).
 | `index.html` | GitHub Pages landing page for the lab |
 | `viewer.html` | Renders the lab PDF in the browser |
 | `assets/` | University logos used on the landing page |
-| `W07_LAB_State_Machines_and_the_LCD_Display.pdf` | The lab document (no code listings: students open the sketches) |
-| `W07 LAB State Machines and the LCD Display.docx` | Editable Word version |
-| `W07_State_Machines_Lab_Code.zip` | All the sketches in one zip, ready to hand out |
+| `W08_LAB_State_Machines_and_the_LCD_Display.pdf` | The lab document (no code listings: students open the sketches) |
+| `W08 LAB State Machines and the LCD Display.docx` | Editable Word version |
+| `W08_State_Machines_Lab_Code.zip` | All the sketches in one zip, ready to hand out |
 | `Code/` | The same sketches, unzipped |
 | `Diagrams/` | Wiring, state and timing diagrams used in the document |

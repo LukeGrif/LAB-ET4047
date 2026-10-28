@@ -1,4 +1,4 @@
-W07 LAB - State Machines and the LCD Display (ET4047)
+W08 LAB - State Machines and the LCD Display (ET4047)
 =====================================================
 
 1. Find out which display you have:
