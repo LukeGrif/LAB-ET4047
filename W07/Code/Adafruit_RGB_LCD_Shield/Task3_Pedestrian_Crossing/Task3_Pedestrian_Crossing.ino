@@ -8,16 +8,21 @@
 //    (with a countdown on the LCD), then stays RED for a moment to
 //    CLEAR the crossing, and goes back to GREEN.
 //
-//        GREEN --(button pressed AND green for at least 5 s)--> YELLOW
+//        GREEN --(button released AND green for at least 5 s)--> YELLOW
 //        YELLOW --(2 s)--> WALK --(6 s)--> CLEAR --(2 s)--> GREEN
 //
 //    There is no delay() anywhere. loop() runs thousands of times a
 //    second, and each time it checks:
-//      - has the button been pressed?
+//      - has the button been pressed and released?
 //      - has the current state lasted long enough to move on?
 //    The shield's backlight also changes colour to match the cars' light.
 //    millis() is the number of milliseconds since the board started,
 //    so  millis() - stateStart  is how long we have been in this state.
+//
+//    The button reacts on the RISING edge: when it is RELEASED and D2
+//    goes from LOW back to HIGH. It is also DEBOUNCED: a mechanical
+//    button "bounces" for a few milliseconds, so a new reading only
+//    counts once it has stayed the same for DEBOUNCE_TIME (50 ms).
 //
 //  Wiring (the same as Task 2, plus the button):
 //    D5 -> 220 ohm -> RED LED    -> GND
@@ -73,6 +78,12 @@ const unsigned long WALK_TIME   = 6000;
 const unsigned long CLEAR_TIME  = 2000;
 
 bool walkRequested = false;        // true once someone has pressed the button
+
+// ----- Button debouncing -----
+const unsigned long DEBOUNCE_TIME = 50;    // a reading must stay the same this long (ms)
+uint8_t buttonState = HIGH;        // the debounced (steady) state: HIGH = not pressed
+uint8_t lastReading = HIGH;        // the raw reading from the previous pass of loop()
+unsigned long lastChange = 0;      // millis() when the raw reading last changed
 int  lastSecondsShown = -1;        // for the WALK countdown on the LCD
 
 
@@ -134,6 +145,32 @@ void enterState(CrossingState newState)
 }
 
 
+// Read the button and debounce it. Returns true ONCE, on the rising
+// edge: when the button is released (D2 goes LOW -> HIGH) and has
+// stayed released for DEBOUNCE_TIME. Call it on every pass of loop().
+bool buttonReleased()
+{
+    uint8_t reading = digitalRead(BUTTON_PIN);
+
+    if (reading != lastReading)        // the pin changed: a real change or a bounce
+    {
+        lastChange = millis();         // restart the debounce timer
+        lastReading = reading;
+    }
+
+    // Has the reading been steady for long enough, and is it a new state?
+    if (millis() - lastChange >= DEBOUNCE_TIME && reading != buttonState)
+    {
+        buttonState = reading;         // accept the new steady state
+        if (buttonState == HIGH)       // LOW -> HIGH: the rising edge (released)
+        {
+            return true;
+        }
+    }
+    return false;                      // no new release this time
+}
+
+
 void setup()
 {
     Serial.begin(9600);
@@ -159,11 +196,12 @@ void loop()
     unsigned long elapsed = millis() - stateStart;    // time in this state so far
 
     // ----- Input: read the button on EVERY pass of loop() -----
-    if (digitalRead(BUTTON_PIN) == LOW && !walkRequested
+    // buttonReleased() is called first so the debouncing runs every pass
+    if (buttonReleased() && !walkRequested
         && (currentState == GREEN || currentState == CLEAR))
     {
         walkRequested = true;          // remember it until it is served
-        Serial.println(F("Button pressed"));
+        Serial.println(F("Button released"));
         lcd.setCursor(0, 1);
         lcd.print(F("WAIT...   "));    // spaces wipe out "DON'T WALK"
     }
