@@ -28,9 +28,7 @@
 // your backpack may use another address: try 0x27 or 0x3F.
 LiquidCrystal_I2C lcd(0x20, 16, 2);
 
-// ----- 1. The states, listed in an enum -----
-// The compiler numbers them for us (RED = 0, GREEN = 1, YELLOW = 2),
-// but in the code we only ever use the names.
+// 1. The states
 enum TrafficLightState
 {
     RED,
@@ -38,53 +36,46 @@ enum TrafficLightState
     YELLOW
 };
 
-// ----- 2. The current state. A traffic light starts on RED -----
+// 2. The current state. A traffic light starts on RED
 TrafficLightState currentState = RED;
-
-// How long each state lasts, in milliseconds
-const unsigned long RED_TIME    = 5000;    // 5 seconds
-const unsigned long GREEN_TIME  = 5000;    // 5 seconds
-const unsigned long YELLOW_TIME = 2000;    // 2 seconds
 
 
 void setup()
 {
-    Serial.begin(9600);                // USB Serial Monitor
+    Serial.begin(9600);                // Serial Monitor at 9600 baud
 
     lcd.init();                        // start the LCD
     lcd.backlight();                   // switch the backlight on
-
-    Serial.println(F("Traffic light ready"));
 }
 
 
 void loop()
 {
-    // ----- 3. Do the work of the current state -----
+    // 3. Do the work of the current state
     switch (currentState)
     {
         case RED:
             lcd.clear();
-            lcd.print(F("State: RED"));
-            Serial.println(F("State: RED"));
-            delay(RED_TIME);           // stay in RED for 5 seconds
-            currentState = GREEN;      // transition: RED -> GREEN
+            lcd.print("State: RED");
+            Serial.println("State: RED");
+            delay(5000);                       // stay in RED for 5 seconds
+            currentState = GREEN;              // RED -> GREEN
             break;
 
         case GREEN:
             lcd.clear();
-            lcd.print(F("State: GREEN"));
-            Serial.println(F("State: GREEN"));
-            delay(GREEN_TIME);         // stay in GREEN for 5 seconds
-            currentState = YELLOW;     // transition: GREEN -> YELLOW
+            lcd.print("State: GREEN");
+            Serial.println("State: GREEN");
+            delay(5000);                       // stay in GREEN for 5 seconds
+            currentState = YELLOW;             // GREEN -> YELLOW
             break;
 
         case YELLOW:
             lcd.clear();
-            lcd.print(F("State: YELLOW"));
-            Serial.println(F("State: YELLOW"));
-            delay(YELLOW_TIME);        // stay in YELLOW for 2 seconds
-            currentState = RED;        // transition: YELLOW -> RED
+            lcd.print("State: YELLOW");
+            Serial.println("State: YELLOW");
+            delay(2000);                       // stay in YELLOW for 2 seconds
+            currentState = RED;                // YELLOW -> RED
             break;
     }
     // loop() now ends and starts again. currentState has changed,
