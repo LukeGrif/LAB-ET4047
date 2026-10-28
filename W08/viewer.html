@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Week 07 Lab</title>
+<title>Week 08 Lab</title>
 <style>
   html, body {
     margin: 0;
@@ -68,7 +68,7 @@
   </a>
   <a class="menu-btn change" href="./">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
-    Week 07
+    Week 08
   </a>
 
   <div id="viewer"><div id="status">Loading lab report…</div></div>
@@ -78,14 +78,14 @@
     pdfjsLib.GlobalWorkerOptions.workerSrc =
       "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.worker.min.mjs";
 
-    // The Week 07 lab; the landing page (index.html) links here with ?lab=fsm
+    // The Week 08 lab; the landing page (index.html) links here with ?lab=fsm
     const LABS = {
       fsm: { title: "State Machines and the LCD Display",
-             pdf: "W07_LAB_State_Machines_and_the_LCD_Display.pdf" },
+             pdf: "W08_LAB_State_Machines_and_the_LCD_Display.pdf" },
     };
     // Only one lab this week, so open it even without ?lab=
     const lab = LABS[new URLSearchParams(location.search).get("lab")] || LABS.fsm;
-    document.title = "Week 07 — " + lab.title;
+    document.title = "Week 08 — " + lab.title;
     const PDF_URL = lab.pdf;
     const MAX_PAGE_WIDTH = 850;    // a page won't render wider than this
     const TWO_UP_MIN = 960;        // window must be at least this wide to show 2 pages
