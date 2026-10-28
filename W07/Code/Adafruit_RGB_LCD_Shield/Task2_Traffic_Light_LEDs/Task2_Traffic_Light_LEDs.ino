@@ -18,8 +18,8 @@
 //    D5 -> 220 ohm resistor -> RED LED    (long leg) ; short leg -> GND
 //    D6 -> 220 ohm resistor -> YELLOW LED (long leg) ; short leg -> GND
 //    D7 -> 220 ohm resistor -> GREEN LED  (long leg) ; short leg -> GND
-//    LCD:    plug the shield onto the breakout board. No wires needed:
-//            it uses the I2C pins SDA (A4) and SCL (A5) through the header.
+//    LCD shield: 5V -> 5V, GND -> GND, SDA -> A4, SCL -> A5
+//                (the I2C pins; see the wiring diagram at the start of the lab)
 //
 //    If your breakout shield has its own LEDs, you can use those
 //    instead: change RED_PIN, YELLOW_PIN and GREEN_PIN below.
