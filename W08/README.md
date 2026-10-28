@@ -6,14 +6,14 @@
 🌐 **Open the lab online:** https://lukegrif.github.io/LAB-ET4047/W08/
 
 In this lab you build a traffic light as a **finite state machine**, drive real
-LEDs from it, and turn it into a **pedestrian crossing** that reacts to a button
-using `millis()` instead of `delay()`.
+LEDs from it, and turn it into a **pedestrian crossing** that waits for a button.
+The code is kept as simple as possible, as a starting point for the car wash.
 
 | # | Task | What you do |
 |---|------|-------------|
 | 1 | A traffic light on the LCD | RED → GREEN → YELLOW with an `enum`, a state variable and `switch`-`case`; add a fourth state |
-| 2 | Traffic light with real LEDs | LEDs on D5/D6/D7; every state sets every output; state names from arrays |
-| 3 | A pedestrian crossing | Button on D2, four states, no `delay()`: timing with `millis()` |
+| 2 | Traffic light with real LEDs | LEDs on D5/D6/D7; each state turns its LED on and the others off |
+| 3 | A pedestrian crossing | Button on D2: GREEN waits until the button is pressed |
 
 The lab document has a wiring diagram for every task and a state diagram for
 every state machine. The diagrams are also in [`Diagrams/`](Diagrams).
